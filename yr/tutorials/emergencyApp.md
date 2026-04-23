@@ -195,14 +195,14 @@ Choose “global latitude” for the latitude attribute and “global longitude�
 
 ![Marker Set Latitude and Longitude](../images/emergencyApp/MarkerSetLonLat.png){:.enlargeImage}
 
+## Getting Address
 Under <strong>Variables</strong>, drag initialize global name to into your workspace.
 
-## Getting Address
 ![Initalize Address](../images/emergencyApp/initAddress.png){:.enlargeImage}
 
 Change “name” to “currentAddress”.
 
-![Name Address Variable]
+![Name Address Variable](../images/emergencyApp/NameCurrentAddress.png){:.enlargeImage}
 
 Under <strong>Text</strong>, drag the “ “ block into your workspace and click it into the initialize global currentAddress to block.
 
@@ -427,7 +427,7 @@ Under <strong>Text</strong>, drag the “ “ block into your workspace and clic
 
 Change the empty text to “) \n\n”.
 
-![Message 7 Content](../images/emergencyApp/SetText7.png){:.enlargeImage}
+![Message 7 Content](../images/emergencyApp/setText7.png){:.enlargeImage}
 
 Under <strong>MessageTextBox</strong>, drag MessageTextBox.Text into your workspace and click it into the join block under “) \n\n“.
 
@@ -439,7 +439,7 @@ Under <strong>Text</strong>, drag the “ “ block into your workspace and clic
 
 Change the empty text to “\n\nPlease save this in case of an emergency”.
 
-![Message 9 Content](../images/emergencyApp/SetText9.png){:.enlargeImage}
+![Message 9 Content](../images/emergencyApp/setText9.png){:.enlargeImage}
 
 ## Finished Blocks
 
