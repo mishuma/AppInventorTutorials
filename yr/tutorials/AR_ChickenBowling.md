@@ -84,6 +84,10 @@ Set <em> Height </em> to "Fill parent". Set <em> Width </em> to "Fill parent". C
 
 ![ARView3D Properties](../images/chicken_placement/arview_settings.png){:.enlargeImage}
 
+Check <em> ShowWireframes </em>. This will show a wire mesh over the detected planes.
+
+![Wireframes](../images/chicken_placement/show_wireframes.png){:.enlargeImage}
+
 
 Before beginning to code the functionality of your app, note under the Media section there are two media files, one called "Chicken.usdz" and one called "Chicken.glb", added for you. A USDZ file stores the virtual model of a 3D object compatible wtih Apple devices. A GLB file stores the virtual model of a 3D object compatible with Android devices.
 
