@@ -84,8 +84,12 @@ Set <em> Height </em> to "Fill parent". Set <em> Width </em> to "Fill parent". C
 
 ![ARView3D Properties](../images/chicken_placement/arview_settings.png){:.enlargeImage}
 
+Check <em> ShowWireframes </em>. This will show a wire mesh over the detected planes.
 
-Before beginning to code the functionality of your app, note under the Media section there is a media file called "Chicken.usdz" that has been added for you. A USDZ file stores the virtual model of a 3D object.
+![Wireframes](../images/chicken_placement/show_wireframes.png){:.enlargeImage}
+
+
+Before beginning to code the functionality of your app, note under the Media section there are two media files, one called "Chicken.usdz" and one called "Chicken.glb", added for you. A USDZ file stores the virtual model of a 3D object compatible wtih Apple devices. A GLB file stores the virtual model of a 3D object compatible with Android devices.
 
 ![Media](../images/chicken_placement/chicken_usdz_file_inmedia.png){:.enlargeImage}
 
@@ -108,47 +112,56 @@ Under <strong> ARView3D1 </strong>, drag and drop a "call ARView3D1.StartTrackin
 
 ![Start Tracking](../images/chicken_placement/start_tracking.png){:.enlargeImage}
 
+Under <strong> ARView3D1 </strong>, drag and drop a "set ARView3D1.Visible to" block into the "when Screen1.Initialize" block.
 
-## Tap At Point Block
+![Set Visibility](../images/chicken_placement/arview_visible.png){:.enlargeImage}
 
-Under <strong> ARView3D1 </strong>, drag and drop a "when ARView3D1.TapAtPoint" block into your workspace.
+Under <strong> Logic </strong>, drag and drop a "true" block into the "set ARView3D1.Visible to" socket.
 
-![Tap At Point](../images/chicken_placement/tap_atpoint_handler.png){:.enlargeImage}
+![Adding true](../images/chicken_placement/true_block.png){:.enlargeImage}
 
 
-Under Variables, drag and drop an "intialize local name to" block into the "when ARView3D1.TapAtPoint" block.
+## Click On Detected Plane Block
+
+Under <strong> ARView3D1 </strong>, drag and drop a "when ARView3D1.ClickOnDetectedPlaneAt" block into your workspace.
+
+![Tap At Point](../images/chicken_placement/clickondetectedplan.png){:.enlargeImage}
+
+
+Under Variables, drag and drop an "intialize local name to" block into the "when ARView3D1.ClickOnDetectedPlaneAt" block.
 
 ![Local Variable](../images/chicken_placement/initialize_local.png){:.enlargeImage}
 
 
 Click on "name" and rename the local variable to "newModelNode".
 
-![newModelNode](../images/chicken_placement/name_modelnodevariable.png){:.enlargeImage}
+![newModelNode](../images/chicken_placement/namemodelnodevariable.png){:.enlargeImage}
 
 
-Under <strong> ARView3D1 </strong>, drag and drop a "call ARView3D1.CreateModelNode" block into the "initialize local newModelNode to" socket. A ModelNode does not have a preset shape and users can upload different usdz files to use.
+Under <strong> ARView3D1 </strong>, drag and drop a "call ARView3D1.CreateModelNodeAtPlane" block into the "initialize local newModelNode to" socket. A ModelNode does not have a preset shape and users can upload different files to use.
 
-![Create Model Node](../images/chicken_placement/call_createmodelnode.png){:.enlargeImage}
-
-
-Hover over "x" in the "when ARView3D1.TapAtPoint" block. Grab the "get x" block and drag and drop it into the "x" socket on the "call ARView3D1.CreateModelNode" block.
-
-![Get x](../images/chicken_placement/get_variablex.png){:.enlargeImage}
+![Create Model Node](../images/chicken_placement/createmodelnodeatplane.png){:.enlargeImage}
 
 
-Repeat this for "y" and "z" so that your code block now looks like this.
+Hover over "detectedPlane" in the "when ARView3D1.ClickOnDetectedPlaneAt" block. Grab the "get detectedPlane" block and drag and drop it into the "targetPlane" socket on the "call ARView3D1.CreateModelNode" block. This provides the ARView with the location of the plane on which to place the new model node.
 
-![Get y and z](../images/chicken_placement/withallcoords.png){:.enlargeImage}
+![Get targetPlane](../images/chicken_placement/get_detectedplane.png){:.enlargeImage}
 
 
-Under Text, drag and drop an empty textbox into the "modelObjectString" socket on the "call ARView3D1.CreateModelNode" block.
+Repeat this for "point" so that your code block now looks like this.
+
+![Get point](../images/chicken_placement/with_detectedplane_andpoint.png){:.enlargeImage}
+
+
+Under Text, drag and drop an empty textbox into the "modelObjectString" socket on the "call ARView3D1.CreateModelNodeAtPoint" block.
 
 ![Empty Textbox](../images/chicken_placement/empty_text.png){:.enlargeImage}
 
 
-In the textbox, type "Chicken.usdz" to match the name of the file under media.
+If you are planning to use an Android device for your companion, in the textbox type "Chicken.glb" to match the name of the file under media. If you are planning to use an Apple device for your companion, in the textbox type "Chicken.usdz" to match the name of the file under media.
 
-![With Text](../images/chicken_placement/emphasize_chicken.usdz.png){:.enlargeImage}
+![With TextUsdz](../images/chicken_placement/emphasize_chickenusdz.png){:.enlargeImage}
+![With Textglb](../images/chicken_placement/emphasize_chickenglb.png){:.enlargeImage}
 
 
 ## ModelNode Scale
@@ -165,15 +178,15 @@ Under Any ModelNode, drag and drop a "set ModelNode.Scale" block into the "in" s
 
 Hover over "newModelNode". Grab a "get newModelNode" block and drop it into the "of component" socket.
 
-![get newModelNode](../images/chicken_placement/get_newmodelnode_firsttime.png){:.enlargeImage}
+![get newModelNode](../images/chicken_placement/getnew_modelnode_first_time.png){:.enlargeImage}
 
 
 Under Math, drag and drop a number block into the "to" socket and set the number to ".25". We want to scale chickens to 25% to create space for multiple chickens within <strong> ARView3D1 </strong>.
 
 ![Number](../images/chicken_placement/grab_number.png){:.enlargeImage}
 
-## ModelNode Rotation
 
+## ModelNode Rotation
 
 In 3D space, there are 3 axes: x, y, z. You can imagine the x axis as the left-right direction, the y axis as the up-down direction, and the z axis as the forward-backward direction.
 
@@ -187,7 +200,7 @@ Under Any ModelNode, drag and drop a "set ModelNode.YRotation" block beneath the
 
 Hover over "newModelNode". Grab a "get newModelNode" block and drop it into the "of component" socket.
 
-![newModelNode 2](../images/chicken_placement/get_newmodelnode_secondtime.png){:.enlargeImage}
+![newModelNode 2](../images/chicken_placement/getnewmodelnode_secondtime.png){:.enlargeImage}
 
 
 Under Math, drag and drop a number block into the "to" socket and set the number to "180". The chicken defaults to face away from the user. To have the chicken face the user, we want the chicken to be rotated 180 degrees along the y-axis.
@@ -201,36 +214,20 @@ Under <strong> ResetButton </strong>, drag and drop a "when ResetButton.Click" b
 ![ResetButton Click](../images/chicken_placement/when_resetbutton_clicked.png){:.enlargeImage}
 
 
-Under Control, drag and drop a "for each item in list" block into the "when ResetButton.Click" block.
+Under <strong> ARView3D1 </strong>, drag and drop a "call ARView3D1.ResetTracking" block into the "when ResetButton.Click" block.
 
-![For in List](../images/chicken_placement/for_each_item_block.png){:.enlargeImage}
+![Reset Tracking](../images/chicken_placement/reset_tracking.png){:.enlargeImage}
 
+Your code block should now look like this.
 
-Click on "item" and rename it to "node". Your block should now look like this.
-
-![Rename to node](../images/chicken_placement/each_nodeinlist.png){:.enlargeImage}
-
-
-Under <strong> ARView3D1 </strong>, drag and drop "ARView3D1.Nodes" into the "for each node in list" socket. "ARView3D1.Nodes" is a list representation of all nodes (chickens in this case) that exist within <strong> ARView3D1 </strong>.
-
-![Nodes List](../images/chicken_placement/arview_nodes.png){:.enlargeImage}
-
-
-Under <strong> ARView3D1 </strong>, drag and drop a "call ARView3D1.removeNode" block into the "do" section.
-
-![Remove Node](../images/chicken_placement/call_removenode.png){:.enlargeImage}
-
-
-Hover over "node" in the "for each node in list" block. Grab the "get node" block and drag it into the "node" socket in the "call ARView3D1.removeNode" block.
-
-![get node](../images/chicken_placement/get_node.png){:.enlargeImage}
+![Final ResetButton](../images/chicken_placement/final_resetButton.png){:.enlargeImage}
 
 
 ## Congratulations!
 
 Congrats! You have finished coding the function of your AR Chicken Placement App. Here is what your block code should look like.
 
-![Final Code](../images/chicken_placement/final_code.png){:.enlargeImage}
+![Final Code](../images/chicken_placement/finalcode.png){:.enlargeImage}
 
 # Pairing Your Companion
 
@@ -337,9 +334,9 @@ In the top right corner, select the "Blocks" button. This will take you to the B
 
 ## Chicken Bowling Code
 
-In your Blocks workspace, set aside the "when Screen1.Initialize" block and the "when ResetButton.Clicked" block. Both of these blocks will not change. From the "when ARView.3D1.TapAtPoint" block, remove the whole "initialize local newModelNode to" block and set it to the side in your workspace to use later.
+In your Blocks workspace, set aside the "when Screen1.Initialize" block and the "when ResetButton.Clicked" block. Both of these blocks will not change. From the "when ARView3D1.ClickOnDetectedPlane" block, remove the whole "initialize local newModelNode to" block and set it to the side in your workspace to use later.
 
-![Remove piece](../images/AR_Chicken/remove_modelnodeblock_fromhandler.png){:.enlargeImage}
+![Remove piece](../images/AR_Chicken/separating_newmodelnode_and_tap.png){:.enlargeImage}
 
 
 Under Control, drag and drop an "if-then" block into the "when ARView3D1.TapAtPoint" block.
@@ -349,7 +346,7 @@ Under Control, drag and drop an "if-then" block into the "when ARView3D1.TapAtPo
 
 Click on the blue gear in the "if-then" block. Drag and drop an "else if" block into the "if" space. You should now have an "if-then-elseif-then" block.
 
-![Adding else-if](../images/AR_Chicken/adding_else-if.png){:.enlargeImage}
+![Adding else-if](../images/AR_Chicken/if-then-else_block.png){:.enlargeImage}
 
 
 Under Logic, drag and drop an equal sign block into the "if" socket.
@@ -369,7 +366,7 @@ Under Text, drag and drop an empty textbox into the second equals sign socket.
 
 In the empty textbox, type "Ball". Your block should currently look like this.
 
-![Example](../images/AR_Chicken/check_equal_signs.png){:.enlargeImage}
+![Example](../images/AR_Chicken/checkequal_signs.png){:.enlargeImage}
 
 
 Under Variables, drag and drop an "initialize local name to" block into the "then" space of the "if-then-elseif-then" block. Change the local variable name from "name" to "newSphereNode".
@@ -377,19 +374,19 @@ Under Variables, drag and drop an "initialize local name to" block into the "the
 ![Local Variable](../images/AR_Chicken/initialize_local_variable_block.png){:.enlargeImage}
 
 
-Under <strong> ARView3D1 </strong>, drag and drop a "call ARView3D1.CreateSphereNode" block into the "initialize local newSphereNode to" socket.
+Under <strong> ARView3D1 </strong>, drag and drop a "call ARView3D1.CreateSphereNodeAtPlane" block into the "initialize local newSphereNode to" socket.
 
-![Create SphereNode](../images/AR_Chicken/create_sphere_node_block.png){:.enlargeImage}
-
-
-Hover over "x" in the "when ARView3D1.TapAtPoint" block. Grab the "get x" block and drag and drop it into the "x" socket on the "call ARView3D1.CreateSphereNode" block.
-
-![Get x](../images/AR_Chicken/get_x_coords.png){:.enlargeImage}
+![Create SphereNode](../images/AR_Chicken/createspherenode_atplane.png){:.enlargeImage}
 
 
-Repeat this for "y" and "z" so that your code block now looks like this.
+Hover over "detectedPlane" in the "when ARView3D1.ClickOnDetectedPlane" block. Grab the "get detectedPlane" block and drag and drop it into the "targetPlane" socket on the "call ARView3D1.CreateSphereNodeAtPlane" block.
 
-![With y, z](../images/AR_Chicken/block_withxyz.png){:.enlargeImage}
+![Get detectedPlane](../images/AR_Chicken/get_detectedPlane.png){:.enlargeImage}
+
+
+Repeat this for "point" so that your code block now looks like this.
+
+![With point](../images/AR_Chicken/with_detectedPlane_andPoint.png){:.enlargeImage}
 
 
 ## SphereNode Texture
@@ -401,7 +398,7 @@ Click the little plus sign next to "Any Component". Under Any SphereNode, drag a
 
 Hover over "newSphereNode". Grab a "get newSphereNode" block and drag and drop it into the "of component" socket.
 
-![get newSphereNode](../images/AR_Chicken/get_newSphereNode.png){:.enlargeImage}
+![get newSphereNode](../images/AR_Chicken/get_newSphere_node.png){:.enlargeImage}
 
 
 Under Text, drag and drop an empty textbox into the "to" socket. Change the text to "Palette.png". Palette.png is the media file that contains the texture we will use for SphereNodes.
@@ -411,7 +408,7 @@ Under Text, drag and drop an empty textbox into the "to" socket. Change the text
 
 Your code block should now look like this.
 
-![Check-In](../images/AR_Chicken/with_palette.png){:.enlargeImage}
+![Check-In](../images/AR_Chicken/withPalette_png.png){:.enlargeImage}
 
 
 ## SphereNode Scale
@@ -429,7 +426,7 @@ Check what your code block should look like now:
 
 <hint markdown="block" title="Show me the code">
 
-![Scale](../images/AR_Chicken/block_withscale.png){:.enlargeImage}
+![Scale](../images/AR_Chicken/with_scale.png){:.enlargeImage}
 
 </hint>
 
@@ -450,7 +447,7 @@ Check what your code block should look like now:
 
 <hint markdown="block" title="Show me the code">
 
-![Check in](../images/AR_Chicken/block_withpinchtoscale.png){:.enlargeImage}
+![Check in](../images/AR_Chicken/pinchtoScale_andScale.png){:.enlargeImage}
 
 </hint>
 
@@ -471,7 +468,7 @@ Check what your code block should look like now:
 
 <hint markdown="block" title="Show me the code">
 
-![Check](../images/AR_Chicken/block_withpantomove.png){:.enlargeImage}
+![Check](../images/AR_Chicken/block_withPanMove.png){:.enlargeImage}
 
 </hint>
 
@@ -487,7 +484,7 @@ Check what your code block should look like now:
 
 <hint markdown="block" title="Show me the code">
 
-![Check](../images/AR_Chicken/block_withenablephysics.png){:.enlargeImage}
+![Check](../images/AR_Chicken/enabledPhysics.png){:.enlargeImage}
 
 </hint>
 
@@ -511,7 +508,7 @@ Under Text, drag and drop an empty textbox into the second equals sign socket. I
 
 Drag and drop the code block you set aside earlier into the "then" section. Your code block should now look like this.
 
-![Big Block](../images/AR_Chicken/adding_earlier_chickenblock.png){:.enlargeImage}
+![Big Block](../images/AR_Chicken/final_bigblock.png){:.enlargeImage}
 
 
 Under Any ModelNode, drag and drop a "set ModelNode.EnablePhysics" block beneath the "set ModelNode.Scale" block. Drag and drop a "get newModelNode" block into the "of component" socket. Under Logic, drag and drop a "true" block into the "to" socket.
@@ -521,7 +518,7 @@ Under Any ModelNode, drag and drop a "set ModelNode.EnablePhysics" block beneath
 
 Congratulation, you have finished coding the functionality of your AR Chicken Bowling App. Here is what your block code should look like.
 
-![Final Code](../images/AR_Chicken/final_code.png){:.enlargeImage}
+![Final Code](../images/AR_Chicken/finalcode.png){:.enlargeImage}
 
 
 # Congratulations! And Testing Your App
