@@ -80,9 +80,9 @@ In the Augmented Reality drawer, drag and drop an <strong> ARView3D </strong> co
 ![Add ARView3D](../images/chicken_placement/arview_add.png){:.enlargeImage}
 
 
-Set <em> Height </em> to "Fill parent". Set <em> Width </em> to "Fill parent". Check <em> EnableOcclusion </em>. By enabling occlusion, virtual objects, or nodes, placed in the <strong> ARView3D </strong> component will interact with objects in the real world, such as a node disappearing when its view is blocked behind a table.
+Set <em> Height </em> to "Fill parent". Set <em> Width </em> to "Fill parent". Check <em> EnableOcclusion </em>. By enabling occlusion, virtual objects, or nodes, placed in the <strong> ARView3D </strong> component will interact with objects in the real world, such as a node disappearing when its view is blocked behind a table. Set <em> PlaneDetectionType </em> to "Horizontal".
 
-![ARView3D Properties](../images/chicken_placement/arview_settings.png){:.enlargeImage}
+![ARView3D Properties](../images/chicken_placement/height_width_occlusion_planedetection.png){:.enlargeImage}
 
 Check <em> ShowWireframes </em>. This will show a wire mesh over the detected planes.
 
