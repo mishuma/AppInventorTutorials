@@ -240,7 +240,7 @@ A QR code should appear on your screen.  Open the App Inventor app on your mobil
 
 # Getting Started With Chicken Bowling
 
-The AR Chicken Bowling App is a continuation of the AR Chicken Placement App to help users continue to build their skills and confidence with augmented reality. The AR Chicken Bowling App allows users to place spheres and chickens on their screen and explore how these nodes can interact with one another. Please note, no actual chicks are harmed in this project.
+The AR Chicken Bowling App is a continuation of the AR Chicken Placement App to help users continue to build their skills and confidence with augmented reality. The AR Chicken Bowling App allows users to place spheres and chickens on their screen and explore how these nodes can interact with one another. Please note, no actual chickens are harmed in this project!
 
 
 <img src="../images/AR_Chicken/final_image.jpg" alt="image" width="300" height="auto">
@@ -339,7 +339,7 @@ In your Blocks workspace, set aside the "when Screen1.Initialize" block and the 
 ![Remove piece](../images/AR_Chicken/separating_newmodelnode_and_tap.png){:.enlargeImage}
 
 
-Under Control, drag and drop an "if-then" block into the "when ARView3D1.TapAtPoint" block.
+Under Control, drag and drop an "if-then" block into the "when ARView3D1.ClickOnDetectedPlane" block.
 
 ![if-then Block](../images/AR_Chicken/if-then_block.png){:.enlargeImage}
 
@@ -516,7 +516,7 @@ Under Any ModelNode, drag and drop a "set ModelNode.EnablePhysics" block beneath
 ![EnablePhysics](../images/AR_Chicken/modelnode_enablephysics.png){:.enlargeImage}
 
 
-Congratulation, you have finished coding the functionality of your AR Chicken Bowling App. Here is what your block code should look like.
+Congratulations, you have finished coding the functionality of your AR Chicken Bowling App. Here is what your block code should look like.
 
 ![Final Code](../images/AR_Chicken/finalcode.png){:.enlargeImage}
 
@@ -529,7 +529,7 @@ You have now completed your AR Chicken Placement App and it is time to test it o
 ![Connect Companion](../images/AR_Chicken/connect_companion.png){:.enlargeImage}
 
 
-A QR code should appear on your screen.  Open the App Inventor app on your mobile device and click “scan QR code”. Your app should appear on your mobile device. Time to use your app! Start by placing some chickens on your screen. Then, place a ball. You can pinch to make the ball bigger or smaller. Use the ball to try and knock over the chickens as if you are bowling! You can always use the reset button to clear your game. If the app can not find clear planes to place an item, you will receive an error message. If this occurs, try changing your location and moving closer to the location you want to place an item. Have fun playing with augmented reality and remember, no actual chickens are harmed in this project. Below are some ideas as to how you can expand and improve your app.
+A QR code should appear on your screen.  Open the App Inventor app on your mobile device and click “scan QR code”. Your app should appear on your mobile device. Time to use your app! Start by placing some chickens on your screen. Then, place a ball. You can pinch to make the ball bigger or smaller. Use the ball to try and knock over the chickens as if you are bowling! You can always use the reset button to clear your game. If the app can not find clear planes to place an item, you will receive an error message. If this occurs, try changing your location and moving closer to the location you want to place an item. Have fun playing with augmented reality. Below are some ideas as to how you can expand and improve your app.
 
 
 # Expand Your App
